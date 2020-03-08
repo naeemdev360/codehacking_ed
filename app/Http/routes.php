@@ -11,6 +11,8 @@
 |
 */
 
+use App\User;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -24,4 +26,12 @@ Route::resource('admin/users','AdminUsersController');
 
 Route::get('admin',function (){
     return view('admin.index');
-});
+})->name('admin');
+//
+//
+//Route::get('admin/users',function (){
+//
+//    $users=User::all();
+//    return view('admin.users.index',compact('users'));
+//
+//})->name('users');
