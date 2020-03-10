@@ -22,8 +22,8 @@
             @foreach($users as $user)
               <tr>
                 <td>{{$user->id}}</td>
-                  <td><img height="100" src="{{$user->photo ? $user->photo->file:"not fount"}}" alt="not fount"></td>
-                <td>{{$user->name}}</td>
+                  <td><img height="100" src="{{$user->photo ? $user->photo->file : "https://www.lansweeper.com/wp-content/uploads/2018/05/ASSET-USER-ADMIN.png"}}" alt="not fount"></td>
+                <td><a href="{{route('admin.users.edit',$user->id)}}">{{$user->name}}</a></td>
                 <td>{{$user->email}}</td>
                 <td>{{$user->role->name}}</td>
                 <td>{{$user->is_active==0?'inactive':'active'}}</td>
