@@ -34,11 +34,16 @@
                 {!! Form::label('photo_id','Photo') !!}
                 {!! Form::file('photo_id',null,['class'=>'form-control']) !!}
             </div>
-            <div class="form-group">
+
 
                 {!! Form::submit('Edit',['class'=>'btn btn-primary']) !!}
-            </div>
+
+
             {!! Form::close() !!}
+            {!! Form::open(['method'=>'DELETE','action'=>['AdminUsersController@destroy',$user->id]]) !!}
+                {!! Form::submit('Delete',['class'=>'btn btn-danger']) !!}
+            {!! Form::close() !!}
+
         </div>
     </div>
 
