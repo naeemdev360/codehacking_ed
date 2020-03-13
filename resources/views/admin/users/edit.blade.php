@@ -36,12 +36,12 @@
             </div>
 
 
-                {!! Form::submit('Edit',['class'=>'btn btn-primary']) !!}
+                {!! Form::submit('Edit',['class'=>'btn btn-primary col-sm-6']) !!}
 
 
             {!! Form::close() !!}
             {!! Form::open(['method'=>'DELETE','action'=>['AdminUsersController@destroy',$user->id]]) !!}
-                {!! Form::submit('Delete',['class'=>'btn btn-danger']) !!}
+                {!! Form::submit('Delete',['class'=>'btn btn-danger col-sm-6']) !!}
             {!! Form::close() !!}
 
         </div>

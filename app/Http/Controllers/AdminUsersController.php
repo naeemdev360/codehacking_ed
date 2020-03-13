@@ -133,7 +133,7 @@ class AdminUsersController extends Controller
         $user=User::find($id);
 
         Session::flash('delete_user',$user->name." has been deleted");
-        unlink($user->photo->file);
+//        unlink($user->photo->file);
         $user->delete();
 
         return redirect(route('admin.users.index'));
