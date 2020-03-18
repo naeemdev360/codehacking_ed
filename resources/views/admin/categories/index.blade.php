@@ -27,8 +27,11 @@
                </div>
                <div class="form-group">
 
-                   {!! Form::submit('Update',['class'=>'btn btn-success btn-block']) !!}
+                   {!! Form::submit('Update',['class'=>'btn btn-success col-sm-6']) !!}
                </div>
+               {!! Form::close() !!}
+               {!! Form::open(['method'=>'DELETE','action'=>['AdminCategoriesController@destroy',$category->id]]) !!}
+                    {!! Form::submit('delete',['class'=>'btn btn-danger col-sm-6']) !!}
                {!! Form::close() !!}
            @endif
        </div>

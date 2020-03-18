@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Comment;
 use App\Http\Requests\CreatePostRequest;
 use App\Http\Requests\EditPostRequest;
 use App\Photo;
@@ -23,7 +24,7 @@ class AdminPostsController extends Controller
     public function index()
     {
         //
-        $posts=Post::all();
+        $posts=Post::paginate(2);
         return view('admin.posts.index',compact('posts'));
     }
 
@@ -135,4 +136,16 @@ class AdminPostsController extends Controller
 
         return redirect(route('admin.posts.index'));
     }
+
+    public function post($id){
+        $post=Post::findOrFail($id);
+        $categories=Category::all();
+        $comments=$post->comments()->whereIsActive(1)->get();
+        return view('post',compact('post','categories','comments'));
+    }
+
+
+
+
+
 }

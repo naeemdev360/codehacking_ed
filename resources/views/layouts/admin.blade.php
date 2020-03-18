@@ -16,8 +16,10 @@
     <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet">
     <link href="{{asset('css/font-awesome.css')}}" rel="stylesheet">
     <link href="{{asset('css/metisMenu.css')}}" rel="stylesheet">
+    @yield('styles')
     <link href="{{asset('css/sb-admin-2.css')}}" rel="stylesheet">
     <link href="{{asset('css/styles.css')}}" rel="stylesheet">
+
 
     {{--<link href="{{asset('css/libs.css')}}" rel="stylesheet">--}}
 
@@ -149,6 +151,9 @@
                             <li>
                                 <a href="{{route('admin.posts.create')}}">Create Post</a>
                             </li>
+                            <li>
+                                <a href="{{route('admin.comments.index')}}">All Comments</a>
+                            </li>
 
                         </ul>
                         <!-- /.nav-second-level -->
@@ -175,11 +180,11 @@
                         <a href="#"><i class="fa fa-wrench fa-fw"></i>Media<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="/media">All Media</a>
+                                <a href="{{route('admin.media.index')}}">All Media</a>
                             </li>
 
                             <li>
-                                <a href="">Upload Media</a>
+                                <a href="{{route('admin.media.upload')}}">Upload Media</a>
                             </li>
 
                         </ul>
@@ -354,6 +359,7 @@
 <!-- jQuery -->
 <script src="{{asset('js/jquery.js')}}"></script>
 <script src="{{asset('js/bootstrap.js')}}"></script>
+@yield('script')
 
 <script src="{{asset('js/metisMenu.js')}}"></script>
 <script src="{{asset('js/sb-admin-2.js')}}"></script>

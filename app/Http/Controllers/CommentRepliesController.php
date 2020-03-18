@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\Comment;
+use App\CommentReply;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class AdminCategoriesController extends Controller
+class CommentRepliesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +17,7 @@ class AdminCategoriesController extends Controller
      */
     public function index()
     {
-        $categories=Category::all();
-        return view('admin.categories.index',compact('categories'));
+        //
     }
 
     /**
@@ -30,6 +30,14 @@ class AdminCategoriesController extends Controller
         //
     }
 
+    public function createReply(Request $request){
+        $this->validate($request,[
+            'body'=>'required',
+        ]);
+
+        CommentReply::create($request->all());
+        return redirect()->back();
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -39,12 +47,8 @@ class AdminCategoriesController extends Controller
     public function store(Request $request)
     {
         //
-        $this->validate($request,[
-            'name'=>'required'
-        ]);
-        Category::create($request->all());
-        return redirect(route('admin.categories.index'));
     }
+
 
     /**
      * Display the specified resource.
@@ -55,6 +59,10 @@ class AdminCategoriesController extends Controller
     public function show($id)
     {
         //
+        $comment=Comment::find($id);
+        $replies=$comment->replies;
+
+        return view('admin.comments.replies.show',compact('replies'));
     }
 
     /**
@@ -66,11 +74,6 @@ class AdminCategoriesController extends Controller
     public function edit($id)
     {
         //
-        $category=Category::find($id);
-        $categories=Category::all();
-
-        return view('admin.categories.index',compact('categories','category'));
-
     }
 
     /**
@@ -83,13 +86,8 @@ class AdminCategoriesController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $this->validate($request,[
-            'name'=>'required'
-        ]);
-
-        Category::findOrFail($id)->update($request->all());
-        return redirect(route('admin.categories.index'));
-
+        CommentReply::find($id)->update($request->all());
+        return redirect()->back();
     }
 
     /**
@@ -101,7 +99,7 @@ class AdminCategoriesController extends Controller
     public function destroy($id)
     {
         //
-        Category::findOrFail($id)->delete();
-        return redirect(route('admin.categories.index'));
+        CommentReply::find($id)->delete();
+        return redirect()->back();
     }
 }
